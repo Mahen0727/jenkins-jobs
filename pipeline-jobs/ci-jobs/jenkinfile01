@@ -1,0 +1,12 @@
+node('SLAVE') {
+
+    stage('Code Check-Out'){
+        git 'https://github.com/citb34/studentapp-ui.git'
+    }
+
+    stage("Compile") {
+        sh '''
+mvn compile
+'''
+    }
+    
