@@ -9,4 +9,4 @@ node('SLAVE') {
 mvn compile
 '''
     }
-    
+  }
