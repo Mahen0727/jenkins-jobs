@@ -9,4 +9,9 @@ node('SLAVE') {
 mvn compile
 '''
     }
-  }
+    stage("Build") {
+        sh '''
+mvn package
+'''
+    }
+}
