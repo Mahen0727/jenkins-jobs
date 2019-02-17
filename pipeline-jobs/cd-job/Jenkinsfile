@@ -10,7 +10,6 @@ mvn compile
 '''
     }
     
-    
     stage("Build") {
         sh '''
 mvn package
@@ -22,5 +21,6 @@ mvn package
 mvn deploy
 '''
     }
+    
 }
 //
