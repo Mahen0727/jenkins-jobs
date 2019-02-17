@@ -26,7 +26,8 @@ node('SLAVE') {
 
     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'TERRAFORM-CREDENTIALS ',
     usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-    dir('TERRAFORM'){ 
+    dir('TERRAFORM'){
+        git 'https://github.com/Mahen0727/Terraform.git' 
         sh '''
         echo uname=$USERNAME pwd=$PASSWORD
         export AWS_ACCESS_KEY_ID="$USERNAME"
