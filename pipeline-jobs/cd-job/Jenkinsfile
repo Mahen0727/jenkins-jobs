@@ -1,13 +1,13 @@
 node('SLAVE') {
 
     stage('Code Check-Out'){
-       dir(DEVELOPMENT){
+       dir('DEVELOPMENT'){
         git 'https://github.com/Mahen0727/studentapp-ui.git'
        }
     }
 
     stage("Compile") {
-         dir(DEVELOPMENT){
+         dir('DEVELOPMENT'){
         sh '''
         mvn compile
         '''
@@ -15,7 +15,7 @@ node('SLAVE') {
     }
     
     stage("Build") {
-         dir(DEVELOPMENT){
+         dir('DEVELOPMENT'){
         sh '''
         mvn package
         '''
