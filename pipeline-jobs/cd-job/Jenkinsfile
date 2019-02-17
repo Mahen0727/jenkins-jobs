@@ -31,6 +31,8 @@ node('SLAVE') {
         echo uname=$USERNAME pwd=$PASSWORD
         export AWS_ACCESS_KEY_ID="$USERNAME"
         export AWS_SECRET_ACCESS_KEY="$PASSWORD"
+        cd 09-test-s3-bucket-creation
+        ls
         '''
         }
     }
