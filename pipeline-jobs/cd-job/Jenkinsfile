@@ -21,6 +21,17 @@ mvn package
 mvn deploy
 '''
     }
-    
+
+    stage('Test') {
+    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'TERRAFORM-CREDENTIALS ',
+    usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+
+    sh 'echo uname=$USERNAME pwd=$PASSWORD'
+    export AWS_ACCESS_KEY_ID="$USERNAME"
+    export AWS_SECRET_ACCESS_KEY="$PASSWORD"
+    }
+}
+
+
 }
 //
