@@ -1,37 +1,37 @@
 node('SLAVE') {
 
     stage('Code Check-Out'){
+       dir(DEVELOPMENT){
         git 'https://github.com/Mahen0727/studentapp-ui.git'
+       }
     }
 
     stage("Compile") {
+         dir(DEVELOPMENT){
         sh '''
-mvn compile
-'''
+        mvn compile
+        '''
+        }
     }
     
     stage("Build") {
+         dir(DEVELOPMENT){
         sh '''
-mvn package
-'''
+        mvn package
+        '''
+         }
     }
 
-    stage("Upload Artifacts") {
-        sh '''
-mvn deploy
-'''
-    }
+    stage('Create-Test-Environement') {
 
-    stage('Test') {
     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'TERRAFORM-CREDENTIALS ',
     usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-
-    sh 'echo uname=$USERNAME pwd=$PASSWORD'
-    export AWS_ACCESS_KEY_ID="$USERNAME"
-    export AWS_SECRET_ACCESS_KEY="$PASSWORD"
+    dir('TERRAFORM'){ 
+        sh 'echo uname=$USERNAME pwd=$PASSWORD'
+        export AWS_ACCESS_KEY_ID="$USERNAME"
+        export AWS_SECRET_ACCESS_KEY="$PASSWORD"
+        }
     }
-}
-
-
+    }
 }
 //
